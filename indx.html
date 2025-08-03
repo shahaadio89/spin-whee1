@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>عجلة خصم الحيوانات</title>
+  <style>
+    body {
+      background: #fff0f5;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding: 40px;
+      color: #ff69b4;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    #wheel {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      border: 10px solid #ff69b4;
+      margin: 20px auto;
+      position: relative;
+      box-shadow: 0 0 20px #ffb6c1;
+      overflow: hidden;
+      background: conic-gradient(
+        #fff 0deg 120deg,
+        #ffccff 120deg 240deg,
+        #ffe4e1 240deg 360deg
+      );
+    }
+    .segment-text {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      top: 50%;
+      left: 50%;
+      margin: -50px -50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      font-size: 1.4em;
+      color: #ff1493;
+      pointer-events: none;
+    }
+    .text1 {
+      transform: rotate(60deg) translate(120px) rotate(-60deg);
+    }
+    .text2 {
+      transform: rotate(180deg) translate(120px) rotate(-180deg);
+    }
+    .text3 {
+      transform: rotate(300deg) translate(120px) rotate(-300deg);
+    }
+    #spin {
+      margin-top: 30px;
+      padding: 10px 30px;
+      font-size: 1.1em;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    #spin:hover {
+      background-color: #ff1493;
+    }
+    #pointer {
+      width: 0;
+      height: 0;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-bottom: 30px solid #ff69b4;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>🐶 لف واربح خصمك 🐾</h1>
+  <div id="pointer"></div>
+  <div id="wheel">
+    <div class="segment-text text1">٪10<br>🦴</div>
+    <div class="segment-text text2">٪20<br>🐾</div>
+    <div class="segment-text text3">٪50<br>🐱</div>
+  </div>
+  <button id="spin">لف العجلة</button>
+
+  <script>
+    const wheel = document.getElementById('wheel');
+    const button = document.getElementById('spin');
+    let deg = 0;
+
+    button.onclick = () => {
+      const min = 1024;
+      const max = 9999;
+      const rand = Math.floor(Math.random() * (max - min)) + min;
+      deg = rand;
+      wheel.style.transition = 'transform 6s ease-out';
+      wheel.style.transform = `rotate(${deg}deg)`;
+
+      setTimeout(() => {
+        const finalDeg = deg % 360;
+        let discount;
+
+        if (finalDeg >= 0 && finalDeg < 120) {
+          discount = '10%';
+        } else if (finalDeg >= 120 && finalDeg < 240) {
+          discount = '20%';
+        } else {
+          discount = '50%';
+        }
+
+        // التوجيه إلى نموذج جوجل فورم
+        window.location.href = 'https://forms.gle/zTBgFP6vvPzCXamu5';
+      }, 6500);
+    };
+  </script>
+</body>
+</html>
